@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import Todo from './components/Todo';
 
 const todos = [
@@ -11,9 +11,12 @@ const todos = [
 export default function App() {
   return (
     <View style={styles.container}>
-      {todos.map((todo) => (
-        <Todo key={todo.id}>{todo.text}</Todo>
-      ))}
+      <FlatList
+        data={todos}
+        renderItem={({ item }) => (
+          <Todo key={item.id}>{item.text}</Todo>
+        )}
+      />
       <StatusBar style="auto" />
     </View>
   );
@@ -25,5 +28,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 50, // <-- Abstand zum oberen Bildschirmrand
   },
 });
