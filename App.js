@@ -4,9 +4,9 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 24 }}>Einkaufen</Text>
-      <Text style={{ fontSize: 24 }}>Sport</Text>
-      <Text style={{ fontSize: 24 }}>React Native lernen</Text>
+      <Text style={styles.todoText}>Einkaufen</Text>
+      <Text style={styles.todoText}>Sport</Text>
+      <Text style={styles.todoText}>React Native lernen</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -18,5 +18,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  todoText: {
+    fontSize: 24,
   },
 });
