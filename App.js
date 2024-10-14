@@ -1,4 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
+import Constants from 'expo-constants';
 import { FlatList, StyleSheet, View } from 'react-native';
 import Todo from './components/Todo';
 
@@ -28,6 +29,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 50, // <-- Abstand zum oberen Bildschirmrand
+    paddingTop: Constants.statusBarHeight,
   },
 });
