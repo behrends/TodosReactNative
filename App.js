@@ -1,9 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-function Todo(props) {
-  const { children } = props;
-  // obige Zeile entspricht const children = props.children;
+function Todo({ children }) {
   return <Text style={styles.todoText}>{children}</Text>;
 }
 
