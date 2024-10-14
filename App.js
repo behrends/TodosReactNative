@@ -1,9 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-function Todo({ children }) {
-  return <Text style={styles.todoText}>{children}</Text>;
-}
+import { StyleSheet, View } from 'react-native';
+import Todo from './components/Todo';
 
 export default function App() {
   return (
@@ -22,11 +19,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  todoText: {
-    fontSize: 24,
-    width: '100%',
-    paddingHorizontal: 10,
-    marginBottom: 5,
   },
 });
