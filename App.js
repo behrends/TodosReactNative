@@ -6,13 +6,14 @@ import TodoList from './components/TodoList';
 import TodoModal from './components/TodoModal';
 import FAB from './components/FAB';
 
-const todos = [
+const data = [
   { id: 1, text: 'Einkaufen' },
   { id: 2, text: 'Sport' },
   { id: 3, text: 'React Native lernen' },
 ];
 
 export default function App() {
+  const [todos, setTodos] = useState(data);
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -20,7 +21,10 @@ export default function App() {
       <TodoModal
         visible={modalVisible}
         onCancel={() => setModalVisible(false)}
-        onSave={() => setModalVisible(false)}
+        onSave={(todo) => {
+          setTodos([...todos, { text: todo, id: todos.length + 1 }]);
+          setModalVisible(false);
+        }}
       />
       <TodoList todos={todos} />
       <FAB onPress={() => setModalVisible(true)} />
