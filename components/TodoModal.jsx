@@ -1,6 +1,15 @@
-import { Button, Modal, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import {
+  Button,
+  Modal,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 
 export default function TodoModal({ visible, onCancel, onSave }) {
+  const [todo, setTodo] = useState('');
   return (
     <Modal
       animationType="slide"
@@ -10,6 +19,12 @@ export default function TodoModal({ visible, onCancel, onSave }) {
       <View style={styles.container}>
         <View style={styles.content}>
           <Text style={styles.text}>Todo hinzufügen</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Todo eingeben"
+            value={todo} // <-- Verwendung des state
+            onChangeText={setTodo} // <-- Verwendung der update function
+          />
           <View style={styles.buttons}>
             <Button title="Abbrechen" onPress={onCancel} />
             <Button title="Speichern" onPress={onSave} />
@@ -46,6 +61,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 15,
     textAlign: 'center',
+  },
+  input: {
+    borderWidth: 1,
+    borderRadius: 5,
+    fontSize: 20,
+    padding: 10,
+    marginBottom: 15,
+    minWidth: '90%',
   },
   buttons: {
     flexDirection: 'row',
