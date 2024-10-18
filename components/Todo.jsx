@@ -9,16 +9,16 @@ export default function Todo({ children }) {
     ? { textDecorationLine: 'line-through' }
     : {}; // <-- Styling abhängig vom state
   return (
-    <View style={styles.container}>
-      <Checkbox
-        style={styles.checkbox}
-        value={done} // <-- Verwendung des state
-        onValueChange={setDone} // <-- Verwendung der update function
-      />
-      <Pressable onPress={() => setDone(!done)}>
+    <Pressable onPress={() => setDone(!done)}>
+      <View style={styles.container}>
+        <Checkbox
+          style={styles.checkbox}
+          value={done} // <-- Verwendung des state
+          onValueChange={setDone} // <-- Verwendung der update function
+        />
         <Text style={[styles.todoText, doneStyle]}>{children}</Text>
-      </Pressable>
-    </View>
+      </View>
+    </Pressable>
   );
 }
 

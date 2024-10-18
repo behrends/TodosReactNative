@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import Constants from 'expo-constants';
-import { StyleSheet, View } from 'react-native';
+import { Alert, SafeAreaView, StyleSheet } from 'react-native';
 import TodoList from './components/TodoList';
+import FAB from './components/FAB';
 
 const todos = [
   { id: 1, text: 'Einkaufen' },
@@ -11,10 +12,25 @@ const todos = [
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <TodoList todos={todos} />
+      <FAB
+        onPress={() =>
+          Alert.alert('Neues Todo', 'Todo erstellen', [
+            {
+              text: 'Abbrechen',
+              onPress: () => console.log('Abbrechen gedrückt'),
+              style: 'cancel',
+            },
+            {
+              text: 'Speichern',
+              onPress: () => console.log('Speichern gedrückt'),
+            },
+          ])
+        }
+      />
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
