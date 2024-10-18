@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import Constants from 'expo-constants';
-import { Alert, SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import TodoList from './components/TodoList';
+import TodoModal from './components/TodoModal';
 import FAB from './components/FAB';
 
 const todos = [
@@ -11,24 +13,17 @@ const todos = [
 ];
 
 export default function App() {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <SafeAreaView style={styles.container}>
-      <TodoList todos={todos} />
-      <FAB
-        onPress={() =>
-          Alert.alert('Neues Todo', 'Todo erstellen', [
-            {
-              text: 'Abbrechen',
-              onPress: () => console.log('Abbrechen gedrückt'),
-              style: 'cancel',
-            },
-            {
-              text: 'Speichern',
-              onPress: () => console.log('Speichern gedrückt'),
-            },
-          ])
-        }
+      <TodoModal
+        visible={modalVisible}
+        onCancel={() => setModalVisible(false)}
+        onSave={() => setModalVisible(false)}
       />
+      <TodoList todos={todos} />
+      <FAB onPress={() => setModalVisible(true)} />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
