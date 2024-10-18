@@ -1,12 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import Constants from 'expo-constants';
-import {
-  Alert,
-  Button,
-  SafeAreaView,
-  StyleSheet,
-} from 'react-native';
+import { Alert, SafeAreaView, StyleSheet } from 'react-native';
 import TodoList from './components/TodoList';
+import FAB from './components/FAB';
 
 const todos = [
   { id: 1, text: 'Einkaufen' },
@@ -18,8 +14,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <TodoList todos={todos} />
-      <Button
-        title="Todo hinzufügen"
+      <FAB
         onPress={() =>
           Alert.alert('Neues Todo', 'Todo erstellen', [
             {
