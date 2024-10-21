@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import Constants from 'expo-constants';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import TodoList from './components/TodoList';
-import TodoModal from './components/TodoModal';
-import FAB from './components/FAB';
+import TodoList from '../components/TodoList';
+import TodoModal from '../components/TodoModal';
+import FAB from '../components/FAB';
 
 const data = [
   { id: 1, text: 'Einkaufen' },
