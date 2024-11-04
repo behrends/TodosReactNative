@@ -1,17 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import ThemedText from '@/components/ThemedText';
+import ThemedView from '@/components/ThemedView';
 
 export default function Settings() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Einstellungen</Text>
-    </View>
+    <ThemedView style={styles.container}>
+      <ThemedText style={styles.text}>Einstellungen</ThemedText>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },

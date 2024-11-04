@@ -3,13 +3,16 @@ import {
   Button,
   Modal,
   StyleSheet,
-  Text,
   TextInput,
   View,
 } from 'react-native';
+import { useThemeColor } from '@/lib/useThemeColor';
+import ThemedText from './ThemedText';
+import ThemedView from './ThemedView';
 
 export default function TodoModal({ visible, onCancel, onSave }) {
   const [todo, setTodo] = useState('');
+  const color = useThemeColor('text');
 
   return (
     <Modal
@@ -17,11 +20,11 @@ export default function TodoModal({ visible, onCancel, onSave }) {
       visible={visible}
       onRequestClose={onCancel}
     >
-      <View style={styles.container}>
-        <View style={styles.content}>
-          <Text style={styles.text}>Todo hinzufügen</Text>
+      <ThemedView style={styles.container}>
+        <ThemedView style={[{ shadowColor: color }, styles.content]}>
+          <ThemedText style={styles.text}>Todo hinzufügen</ThemedText>
           <TextInput
-            style={styles.input}
+            style={[{ color, borderColor: color }, styles.input]}
             placeholder="Todo eingeben"
             value={todo}
             onChangeText={setTodo}
@@ -43,8 +46,8 @@ export default function TodoModal({ visible, onCancel, onSave }) {
               disabled={todo.trim() === ''}
             />
           </View>
-        </View>
-      </View>
+        </ThemedView>
+      </ThemedView>
     </Modal>
   );
 }
@@ -58,11 +61,9 @@ const styles = StyleSheet.create({
   },
   content: {
     margin: 20,
-    backgroundColor: 'white',
     borderRadius: 20,
     padding: 35,
     alignItems: 'center',
-    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,

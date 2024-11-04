@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import Constants from 'expo-constants';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import ThemedView from '@/components/ThemedView';
 import TodoList from '@/components/TodoList';
 import TodoModal from '@/components/TodoModal';
 import FAB from '@/components/FAB';
@@ -17,7 +18,7 @@ export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <ThemedView style={styles.container}>
       <TodoModal
         visible={modalVisible}
         onCancel={() => setModalVisible(false)}
@@ -29,14 +30,13 @@ export default function App() {
       <TodoList todos={todos} />
       <FAB onPress={() => setModalVisible(true)} />
       <StatusBar style="auto" />
-    </SafeAreaView>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
