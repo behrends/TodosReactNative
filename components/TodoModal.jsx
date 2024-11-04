@@ -27,10 +27,19 @@ export default function TodoModal({ visible, onCancel, onSave }) {
             onChangeText={setTodo}
           />
           <View style={styles.buttons}>
-            <Button title="Abbrechen" onPress={onCancel} />
+            <Button
+              title="Abbrechen"
+              onPress={() => {
+                onCancel();
+                setTodo('');
+              }}
+            />
             <Button
               title="Speichern"
-              onPress={() => onSave(todo.trim())}
+              onPress={() => {
+                onSave(todo.trim());
+                setTodo('');
+              }}
               disabled={todo.trim() === ''}
             />
           </View>
