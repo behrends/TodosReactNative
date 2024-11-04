@@ -10,6 +10,7 @@ import {
 
 export default function TodoModal({ visible, onCancel, onSave }) {
   const [todo, setTodo] = useState('');
+
   return (
     <Modal
       animationType="slide"
@@ -22,12 +23,16 @@ export default function TodoModal({ visible, onCancel, onSave }) {
           <TextInput
             style={styles.input}
             placeholder="Todo eingeben"
-            value={todo} // <-- Verwendung des state
-            onChangeText={setTodo} // <-- Verwendung der update function
+            value={todo}
+            onChangeText={setTodo}
           />
           <View style={styles.buttons}>
             <Button title="Abbrechen" onPress={onCancel} />
-            <Button title="Speichern" onPress={() => onSave(todo)} />
+            <Button
+              title="Speichern"
+              onPress={() => onSave(todo.trim())}
+              disabled={todo.trim() === ''}
+            />
           </View>
         </View>
       </View>
