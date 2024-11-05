@@ -1,14 +1,14 @@
 import { FlatList, StyleSheet, View } from 'react-native';
+import { useRowIds } from 'tinybase/ui-react';
+import { DB } from '@/lib/Constants';
 import Todo from './Todo';
 
-export default function TodoList({ todos }) {
+export default function TodoList() {
   return (
     <FlatList
       style={styles.list}
-      data={todos}
-      renderItem={({ item }) => (
-        <Todo key={item.id}>{item.text}</Todo>
-      )}
+      data={useRowIds(DB.todo.table)}
+      renderItem={({ item: id }) => <Todo id={id} />}
       ItemSeparatorComponent={() => <View style={styles.separator} />}
     />
   );

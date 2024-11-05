@@ -1,25 +1,32 @@
-import { useState } from 'react'; // <-- import aus react!
 import { Pressable, StyleSheet } from 'react-native';
 import Checkbox from 'expo-checkbox';
+import { useRow, useSetCellCallback } from 'tinybase/ui-react';
+import { DB } from '@/lib/Constants';
 import ThemedText from './ThemedText';
 import ThemedView from './ThemedView';
 
-export default function Todo({ children }) {
-  const [done, setDone] = useState(false); // <-- state mit false initialisieren
+export default function Todo({ id }) {
+  const { text, done } = useRow(DB.todo.table, id);
+  const handlePress = useSetCellCallback(
+    DB.todo.table,
+    id,
+    DB.todo.done,
+    () => (done) => !done
+  );
 
   const doneStyle = done
     ? { textDecorationLine: 'line-through' }
-    : {}; // <-- Styling abhängig vom state
+    : {};
   return (
-    <Pressable onPress={() => setDone(!done)}>
+    <Pressable key={id} onPress={handlePress}>
       <ThemedView style={styles.container}>
         <Checkbox
           style={styles.checkbox}
-          value={done} // <-- Verwendung des state
-          onValueChange={setDone} // <-- Verwendung der update function
+          value={done}
+          onValueChange={handlePress}
         />
         <ThemedText style={[styles.todoText, doneStyle]}>
-          {children}
+          {text}
         </ThemedText>
       </ThemedView>
     </Pressable>
