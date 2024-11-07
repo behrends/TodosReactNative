@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 import {
   DarkTheme,
@@ -13,9 +14,23 @@ import {
   useCreatePersister,
   useCreateStore,
 } from 'tinybase/ui-react';
+import * as QuickActions from 'expo-quick-actions';
+import { useQuickActionRouting } from 'expo-quick-actions/router';
 
 export default function Layout() {
   const colorScheme = useColorScheme();
+  useQuickActionRouting();
+
+  useEffect(() => {
+    QuickActions.setItems([
+      {
+        title: 'Todo hinzufügen',
+        id: '0',
+        icon: 'add',
+        params: { href: '/new' },
+      },
+    ]);
+  }, []);
 
   const store = useCreateStore(createStore);
   useCreatePersister(
